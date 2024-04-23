@@ -11,3 +11,7 @@ b. URL `amqp://guest:guest@localhost:5672` yang sama di program publisher dan su
 **those event later consumed and processed by the subscriber**
 
 ![alt text](subscriber-action.png)
+
+There is some spike on the chart because when the publisher program is run, messages enter the server. At that moment, the count of messages rise up from zero briefly and fall down again when the publisher program finish running.
+
+![alt text](publisher-spike.png)
