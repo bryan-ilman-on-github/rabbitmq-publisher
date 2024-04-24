@@ -4,14 +4,14 @@ b. URL `amqp://guest:guest@localhost:5672` yang sama di program publisher dan su
 
 ![alt text](running-rabbitmq.png)
 
-**the publisher sent 5 event to the message broker**
+Ketika program publisher dijalankan, maka 5 _event_ akan dikirimkan ke _message broker_ milik RabbitMQ. Selama proses pengiriman _event_ ini berlangsung, jumlah _connection_ pada RabbitMQ dashbard akan bertambah dari nol jadi satu. Pada dashboard, dapat juga dilihat _message rate_ yang dihasilkan program publisher.
 
 ![alt text](publisher-action.png)
 
-**those event later consumed and processed by the subscriber**
+Begitu ada _event_ yang masuk ke _message broker_, program subscriber akan langsung mengkonsumsinya jika sedang berjalan. Namun, jika program subscriber mati, maka jumlah _message queue_ akan bertambah dan tidak akan berkurang sampai ada yang mengkonsumsinya. Kabar baiknya, _event_ ini tidak akan hilang dan bersifat sangat _durable_ selama _server_ dari RabbitMQ berjalan.
 
 ![alt text](subscriber-action.png)
 
-There is some spike on the chart because when the publisher program is run, messages enter the server. At that moment, the count of messages rise up from zero briefly and fall down again when the publisher program finish running.
+When the publisher program runs, a spike appears on the chart as messages flow into the server. During this time, the message count briefly rises from zero and then falls once the publisher program finishes its operation. This metric indicates the number of messages the publisher generates per second. If the publisher program runs continuously, the spike will flatten out as messages arrive every second. Essentially, the dashboard chart provides insight into the 'message rate'. It reveals the activity level of the publisher program.
 
 ![alt text](publisher-spike.png)
